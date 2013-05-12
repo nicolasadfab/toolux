@@ -1,0 +1,609 @@
+/* =page
+ -----------------------------------------------------------------*/
+html {
+  
+  div#adfab-utils-overlay {
+    display: none;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    z-index: 2147483000;
+    cursor: crosshair;
+  }
+  
+  .adfab-overlay-screenshot {
+    cursor: crosshair;
+    top: 0px;
+    left: 0px;
+    z-index: 2147483640;
+    position:fixed;
+    width:100%;
+    height:100%;
+    
+    .adfab-overlay-start {
+      background: rgb(0, 0, 0);
+      opacity:.5;
+      width:100%;
+      height:100%;
+      position:absolute;
+      top: 0px;
+      left:0px;
+    }
+    
+    .adfab-overlay {
+      display:none;
+      background: rgb(0, 0, 0);
+      opacity:.5;
+      width:100%;
+      height:100%;
+      position:absolute;
+      top: 0px;
+      left:0px;
+      
+      &.adfab-overlay-screenshot-bottom {
+        bottom: 0px;
+        top: inherit;
+        top: auto;
+      }
+      
+      &.adfab-overlay-screenshot-right {
+        right: 0px;
+        left: inherit;
+        left: auto;
+      }
+    }
+    
+    .adfab-overlay-line-x {
+      position: absolute;
+      height: 100%;
+      width:0px;
+      border-right-width: 1px;
+      border-right-style: dashed;
+      border-right-color: rgb(255, 255, 255);
+      background:#000;
+    }
+    
+    .adfab-overlay-line-y {
+      position: absolute;
+      width: 100%;
+      height: 0px;
+      border-top-width: 1px;
+      border-top-style: dashed;
+      border-top-color: rgb(255, 255, 255);
+      background:#000;
+    }
+  }
+
+	div#adfab-utils {
+	  z-index: 2147483647;
+    padding: 0px;
+    margin: 0px;
+    position: fixed;
+    top: 0px;
+    right: 0px;
+    height: 100%;
+    .transition(right, .3s, ease-out);
+    
+    &.close {
+      right: -@wtab;
+    }
+    
+	  * {
+	    opacity: 1;
+      padding: 0px;
+      margin: 0px;
+      font-size: @fz;
+      font-family: @ff;
+      
+      &:hover {
+        opacity: 1;
+        line-height: inherit;
+        padding: 0px;
+        margin: 0px;
+        font-size: @fz;
+        font-family: @ff;
+      }
+	  }
+	  
+	  div.overlay {
+      top: 0px;
+      right: 0px;
+	    position: absolute;
+      height: 100%;
+      width: @wtab;
+      background-color: rgba(255, 255, 255, .4);
+	  }
+        
+    #drop_zone {
+      margin: 5px;
+      float: left;
+      background-color: rgba(0, 0, 0, .5);
+      width: 100px;
+      height: 36px;
+      text-align: center;
+      font-weight: bold;
+      color: @dark-grey;
+      border: 2px dashed @dark-grey;
+      font-size: 15px;
+      line-height: 35px;
+      
+      &.over {
+        color: @white;
+      }
+    }
+	  
+	  section.tab {
+	    position: absolute;
+      z-index: 2147483640;
+	    right: 0px;
+	    display: block;
+	    width: @wtab;
+	    height: @htab;
+	    overflow: hidden;
+	    cursor: pointer;
+      .transition(width, .5s, ease-out);
+      .box-shadow(1px, 1px, 1px, 0px, rgba(0, 0, 0, 0.4));
+      
+      &.tab-1 {
+        top: 0px;
+        
+        .icon-refresh.actif {
+          .sprite-icon(1);
+          background-color: rgba(0, 0, 0, .8);
+        }
+      }
+      
+      &.tab-2 {
+        top: @htab;
+        
+        .slider,
+        #drop_zone {
+          display: none;
+        }
+        
+        &.open {
+          width: 170px;
+          background-color: rgba(255, 255, 255, .8);
+          
+          #drop_zone {
+            display: block;
+          }
+          .slider {
+            display: none;
+          }
+        }
+        
+        &:hover {
+          width: 170px;
+          background-color: rgba(255, 255, 255, .8);
+            
+          .slider {
+            display: block;
+          }
+          #drop_zone {
+            display: none;
+          }
+        }
+        
+        .wrapper {
+          position: absolute;
+          top: 0px;
+          left: 0px;
+          width: 170px;
+        }
+    
+        .slider {
+          font-style: normal;
+          color: @dark-grey;
+          clear: both;
+          display: block;
+          position: absolute;
+          top: 25px;
+          left: 50px;
+          width: 100px;
+        }
+  
+        .slide-container {
+          position: relative;
+          width: 100px;
+          margin-left: 5px;
+          
+          .slide-bar {
+            width: 100%;
+            height: 5px;
+            .border-radius-same-size(15px);
+            background-color: @dark-grey;
+          }
+          
+          .slide-btn {
+            margin-top: -5px;
+            margin-left: -5px;
+            position: absolute;
+            top: 0px;
+            left: 0px;
+            width: 15px;
+            height: 15px;
+            .border-radius-same-size(5px);
+            background-color: @dark-grey;
+            cursor: pointer;
+          }
+        }
+      }
+      
+      &.tab-3 {
+        top: @htab * 2;
+        
+        .wrapper {
+          position: absolute;
+          top: 0px;
+          left: 0px;
+          width: 280px;
+        }
+        
+        &:hover {
+          width: @wtab * 4;
+        }
+      }
+      
+      &.tab-4 {
+        top: @htab * 3;
+      }
+      
+      &.tab-5 {
+        top: @htab * 4;
+      }
+      
+      .icon {
+        float: left;
+        width: @wtab;
+        height: @htab;
+      
+        &.icon-refresh {
+          .sprite-icon(0);
+        }
+        
+        &.icon-layer {
+          .sprite-icon(3);
+        }
+        
+        &.icon-note {
+          .sprite-icon(4);
+        }
+        
+        &.icon-camera {
+          .sprite-icon(2);
+        }
+        
+        &.icon-help {
+          .sprite-icon(5);
+        }
+      }
+      
+      &:hover {
+        background-color: rgba(255, 255, 255, .8);
+        
+        .icon-note {
+          opacity: .4;
+          
+          &:hover {
+            opacity: 1;
+          }
+          
+          &.red {
+            background-color: @red-light;
+          }
+          
+          &.yellow {
+            background-color: @yellow-light;
+          }
+          
+          &.green {
+            background-color: @green-light;
+          }
+          
+          &.blue {
+            background-color: @blue-light;
+          }
+        }
+      }
+	  }
+	}
+	
+	.adfab-note {
+	  width: 0px;
+	  height: 0px;
+	  display: none;
+	  .border-radius-same-size(5px);
+	  position: absolute;
+    z-index: 2147482000;
+	  border: 5px solid red;
+	  background: rgba(255, 255, 255, .5);
+	  cursor: move;
+	  font-family: @ff;
+    .box-shadow(0px, 2px, 5px, 0px, rgba(0, 0, 0, 0.5));
+	  
+    * {
+      opacity: 1;
+      line-height: inherit;
+      padding: 0px;
+      margin: 0px;
+      font-size: @fz;
+      font-family: @ff;
+      
+      &:hover {
+        opacity: 1;
+        line-height: inherit;
+        padding: 0px;
+        margin: 0px;
+        font-size: @fz;
+        font-family: @ff;
+      }
+    }
+    
+	  .textarea-wrapper {
+	    position: absolute;
+	    top: 100%;
+	    margin: 15px 0px 0px 0px;
+	    left: 0px;
+      background-color: @white;
+	    width: 100%;
+      .box-shadow(0px, 4px, 3px, 0px, rgba(0, 0, 0, 0.4));
+      .border-radius-same-size(5px);
+      //height: 0px;
+      //overflow: hidden;
+      
+      &.open {
+        .transition(height, 1s, ease-out);
+        //overflow: visible;
+        //height: inherit;
+        //height: auto;
+        
+        &:before,
+        &:after,
+        .textarea-inner {
+          display: block;
+        }
+      }
+	    
+	    &:before {
+        top: -20px;
+        content: " ";
+        display: none;
+        height: 20px;
+        left: 0;
+        position: absolute;
+        width: 100%;
+      }
+      
+      &:after {
+        display: none;
+        border-left: solid transparent 10px;
+        border-right: solid transparent 10px;
+        border-bottom: solid @white 10px;
+        top: -10px;
+        content: " ";
+        height: 0;
+        left: 20px;
+        margin-left: -13px;
+        position: absolute;
+      }
+      
+      .textarea-inner {
+        padding: 10px;
+        display: none;
+	    
+  	    textarea {
+  	      box-shadow: none;
+          outline: none;
+  	      margin: 0px;
+  	      padding: 0px;
+  	      border: 0px;
+  	      display: block;
+  	      width: 100%;
+  	      height: 50px;
+          font-size: 12px;
+          resize: vertical;
+          
+          &:focus {
+            background-color: @white;
+          }
+  	    }
+	    }
+	  }
+	  
+	  .info {
+	    display: none;
+	    width: 100%;
+      top: 50%;
+      position: absolute;
+      text-align: center;
+      margin-top: -12px;
+      font-size: 12px;
+      pointer-events: none;
+      opacity: 0.7;
+	  }
+	  
+    .textarea-show {
+      .not-selectable();
+      cursor: pointer;
+      display: none;
+      text-shadow: 0px 1px 0px rgba(0, 0, 0, .4);
+      z-index: 2147483641;
+      font-weight: bold;
+      position: absolute;
+      width: 14px;
+      height: 14px;
+      padding: 2px;
+      bottom: 5px;
+      right: 5px;
+      border-radius: 2px;
+      width: 16px;
+      height: 16px;
+      font-size: 30px;
+      border: 0px solid #fff;
+      box-shadow: none;
+      .gradient-bg(@red, @red);
+      text-align: center;
+      color: @white;
+      line-height: 11px;
+      padding: 0px;
+      line-height: 16px;
+      font-size: 20px;
+      
+      &.open {
+        line-height: 11px;
+        font-size: 30px;
+      }
+    }
+    
+	  &:hover {
+      .textarea-show,
+      .info {
+	     display: block;
+      }
+    }
+    
+    .notif,
+    .close {
+      text-shadow: 0px 1px 0px rgba(0, 0, 0, .4);
+      z-index: 2147483641;
+      font-weight: bold;
+      position: absolute;
+      top: -14px;
+      font-size: 11px;
+      line-height: 14px;
+      width: 14px;
+      height: 14px;
+      padding: 2px;
+      .border-radius-same-size(15px);
+      .gradient-bg(@red, @red);
+      text-align: center;
+      color: @white;
+      border: 3px solid @white;
+      .box-shadow(0px, 2px, 2px, 1px, rgba(0, 0, 0, 0.4));
+    }
+    
+    .notif {
+      cursor: default;
+      left: -14px;
+    }
+    
+    .close {
+      cursor: pointer;
+      right: -14px;
+    }
+          
+    &.red {
+      border-color: @red;
+      
+      .notif,
+      .close,
+      .textarea-show {
+        .gradient-bg(@red-light, @red);
+      }
+      
+      textarea {
+        color: @red;
+        font-weight: bold;
+      }
+    }
+    
+    &.yellow {
+      border-color: @yellow;
+      
+      .notif,
+      .close,
+      .textarea-show {
+        .gradient-bg(@yellow-light, @yellow);
+      }
+      
+      textarea {
+        color: @yellow;
+        font-weight: bold;
+      }
+    }
+    
+    &.green {
+      border-color: @green;
+      
+      .notif,
+      .close,
+      .textarea-show {
+        .gradient-bg(@green-light, @green);
+      }
+      
+      textarea {
+        color: @green;
+        font-weight: bold;
+      }
+    }
+    
+    &.blue {
+      border-color: @blue;
+      
+      .notif,
+      .close,
+      .textarea-show {
+        .gradient-bg(@blue-light, @blue);
+      }
+      
+      textarea {
+        color: @blue;
+        font-weight: bold;
+      }
+    }
+	}
+	
+	.adfab-display {
+    z-index: 2147482000;
+	  position: absolute;
+	  top: 0px;
+	  left: 0px;
+	  cursor: move;
+    
+    * {
+      opacity: 1;
+      line-height: inherit;
+      padding: 0px;
+      margin: 0px;
+      font-size: @fz;
+      font-family: @ff;
+      
+      &:hover {
+        opacity: 1;
+        line-height: inherit;
+        padding: 0px;
+        margin: 0px;
+        font-size: @fz;
+        font-family: @ff;
+      }
+    }
+	  
+    .close {
+      line-height: 14px;
+      text-shadow: 0px 1px 0px rgba(0, 0, 0, .4);
+      z-index: 2147483641;
+      font-weight: bold;
+      position: absolute;
+      top: -14px;
+      font-size: 11px;
+      width: 14px;
+      height: 14px;
+      padding: 2px;
+      .border-radius-same-size(15px);
+      .gradient-bg(@red, @red);
+      text-align: center;
+      color: @white;
+      border: 3px solid @white;
+      .box-shadow(0px, 2px, 2px, 1px, rgba(0, 0, 0, 0.4));
+      cursor: pointer;
+      right: -9px;
+    }
+	}
+}
+
+.clearer {
+  clear: both;
+}

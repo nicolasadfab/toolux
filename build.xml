@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<project basedir="." default="compile">
+    
+    <taskdef name="jscomp" classname="com.google.javascript.jscomp.ant.CompileTask" classpath="build/compiler.jar"/>
+        
+    <target name="compile">
+        
+        <jscomp compilationLevel="simple" debug="false" output="js/toolux.min.js">
+     
+            <sources dir="js">
+                <file name="jquery-1-9-1.min.js"/>
+                <file name="display.js"/>
+                <file name="drag.js"/>
+                <file name="note.js"/>
+                <file name="selection.js"/>
+                <file name="slider.js"/>
+                <file name="carousel.js"/>
+                <file name="app.js"/>
+                <file name="cssrefresh.js"/>
+            </sources>
+        </jscomp>
+    </target>
+</project>
