@@ -1,4 +1,4 @@
-function Slider (parent, callback, opacity)
+function TooluxSlider (parent, callback, opacity)
 {
 	this.callback = callback;
 	this.parent = parent;
@@ -25,7 +25,7 @@ function Slider (parent, callback, opacity)
 	this.bindEvents();
 }
 
-Slider.prototype.setPercent = function (pInt, callback)
+TooluxSlider.prototype.setPercent = function (pInt, callback)
 {
     x = pInt - this.bar.offset().left;
     if(x < 0) {
@@ -44,7 +44,7 @@ Slider.prototype.setPercent = function (pInt, callback)
 }
 
 // Note here that we are using Object.prototype.newMethod rather than // Object.prototype so as to avoid redefining the prototype object 
-Slider.prototype.bindEvents = function ()
+TooluxSlider.prototype.bindEvents = function ()
 {
 	var _self = this,
 		isDragging = false,
@@ -80,7 +80,7 @@ Slider.prototype.bindEvents = function ()
 	});
 };
 
-Slider.prototype.getPercent = function ()
+TooluxSlider.prototype.getPercent = function ()
 {
 	return (parseInt(this.btn.css("left").replace("px", "")) * 100 / this.width) + .1;
 };

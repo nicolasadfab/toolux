@@ -1,4 +1,4 @@
-function Display ( tpl, inner, color )
+function TooluxDisplay ( tpl, inner, color )
 {   
     tpl = $(tpl);
 	tpl.addClass('adfab-display-img');
@@ -13,12 +13,12 @@ function Display ( tpl, inner, color )
     });
     $('body').append(this._tpl);
     
-    this.drag = new Drag(this._tpl, 'adfab-display-img');
+    this.drag = new TooluxDrag(this._tpl, 'adfab-display-img');
     
     this.bindEvents();
 }
  
-Display.prototype.bindEvents = function ()
+TooluxDisplay.prototype.bindEvents = function ()
 {
     var _self = this;
     
@@ -28,7 +28,7 @@ Display.prototype.bindEvents = function ()
     });
 };
 
-Display.prototype.destroy = function ()
+TooluxDisplay.prototype.destroy = function ()
 {
     if(this.drag != null) {
         this.drag.destroy();

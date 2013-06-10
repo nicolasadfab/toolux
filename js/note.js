@@ -1,4 +1,4 @@
-function Note ( color, notif )
+function TooluxNote ( color, notif )
 {    
     this._color = color;
     this._used = false;
@@ -37,22 +37,22 @@ function Note ( color, notif )
     this.bindEvent();
 }
 
-Note.prototype.setNumb = function (i)
+TooluxNote.prototype.setNumb = function (i)
 {
     this._notif.html(i);
 }
 
-Note.prototype.isDead = function ()
+TooluxNote.prototype.isDead = function ()
 {
     return this._dead;
 }
 
-Note.prototype.isUsed = function ()
+TooluxNote.prototype.isUsed = function ()
 {
     return this._used;
 }
 
-Note.prototype.bindEvent = function (e)
+TooluxNote.prototype.bindEvent = function (e)
 {
     var _self = this,
         _isClicked = false,
@@ -116,7 +116,7 @@ Note.prototype.bindEvent = function (e)
                 
                 _self._pos = _pos;
                 
-                _self.drag = new Drag(_self._tpl, 'adfab-note');
+                _self.drag = new TooluxDrag(_self._tpl, 'adfab-note');
                 return false;
             });
         
@@ -154,7 +154,7 @@ Note.prototype.bindEvent = function (e)
     });
 }
 
-Note.prototype.opacityOverlay = function (i)
+TooluxNote.prototype.opacityOverlay = function (i)
 {
     if(i <= 10 && i >= 1) {
         this._tpl.css({
@@ -169,7 +169,7 @@ Note.prototype.opacityOverlay = function (i)
     }
 }
 
-Note.prototype.destroy = function (e)
+TooluxNote.prototype.destroy = function (e)
 {
     if(this.drag != null) {
         this.drag.destroy();

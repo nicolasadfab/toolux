@@ -1,8 +1,9 @@
 // FIRST CHECK VERSION
 chrome.storage.sync.get('tooluxversion', function(v)
 {
+    'use strict';
+    
     var details = chrome.app.getDetails();
-    console.log(v)
     if(v.tooluxversion !== details.version) {
         chrome.storage.sync.set({'tooluxversion': details.version}, function() {});
         chrome.tabs.create({'url': chrome.extension.getURL('version.html')}, function (tab)
@@ -14,11 +15,15 @@ chrome.storage.sync.get('tooluxversion', function(v)
 
 chrome.browserAction.onClicked.addListener(function (tab)
 {
+    'use strict';
+    
     chrome.tabs.executeScript(null, {code:"jQuery(window).trigger('browser_action_clicked', [])"});
 });
 
 screenFunction = function (pos)
 {
+    'use strict';
+    
     chrome.tabs.captureVisibleTab(
         null,
         {
@@ -29,14 +34,15 @@ screenFunction = function (pos)
         {
             
             var image = new Image(),
-                canvas = document.createElement('canvas');;
+                canvas = document.createElement('canvas'),
+                context;
                 
             image.onload = function ()
             {
                 canvas.width = pos.width;
                 canvas.height = pos.height;
                 
-                var context = canvas.getContext("2d");
+                context = canvas.getContext("2d");
                 context.drawImage(
                     image,
                     pos.startX,
@@ -52,7 +58,7 @@ screenFunction = function (pos)
                 chrome.tabs.executeScript(
                     null,
                     {
-                        code:"App.saveImg('" + canvas.toDataURL('image/jpeg') + "');"
+                        code:"Toolux.saveImg('" + canvas.toDataURL('image/jpeg') + "');"
                     }
                 );
             };
@@ -64,10 +70,17 @@ screenFunction = function (pos)
 chrome.extension.onRequest.addListener(
     function (request, sender, sendResponse)
     {
-        if(request.msg == "screenFunc") {
+        'use strict';
+        
+        if(request.msg === "screenFunc") {
             screenFunction(request.pos);
-        }else if(request.msg == "help") {
+        }else if(request.msg === "help") {
             chrome.tabs.create({'url': chrome.extension.getURL('index.html')}, function (tab)
+            {
+                // Tab opened.
+            });
+        }else if (request.msg === "bug") {
+            chrome.tabs.create({'url': 'https://github.com/nicolasadfab/toolux/issues/new'}, function (tab)
             {
                 // Tab opened.
             });

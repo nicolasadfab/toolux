@@ -84,7 +84,7 @@ html {
     top: 0px;
     right: 0px;
     height: 100%;
-    .transition(right, .3s, ease-out);
+    //.transition(right, .3s, ease-out);
     
     &.close {
       right: -@wtab;
@@ -113,7 +113,9 @@ html {
 	    position: absolute;
       height: 100%;
       width: @wtab;
-      background-color: rgba(255, 255, 255, .4);
+      //background-color: rgba(255, 255, 255, .4);
+      background-color: rgba(255, 255, 255, 1);
+      .box-shadow(0px, 0px, 6px, 1px, rgba(0, 0, 0, .4));
 	  }
         
     #drop_zone {
@@ -144,7 +146,8 @@ html {
 	    overflow: hidden;
 	    cursor: pointer;
       .transition(width, .5s, ease-out);
-      .box-shadow(1px, 1px, 1px, 0px, rgba(0, 0, 0, 0.4));
+      border-bottom: 1px solid #ccc;
+      //.box-shadow(1px, 1px, 1px, 0px, rgba(0, 0, 0, 0.4));
       
       &.tab-1 {
         top: 0px;
@@ -255,6 +258,10 @@ html {
         top: @htab * 4;
       }
       
+      &.tab-6 {
+        top: @htab * 5;
+      }
+      
       .icon {
         float: left;
         width: @wtab;
@@ -278,6 +285,10 @@ html {
         
         &.icon-help {
           .sprite-icon(5);
+        }
+        
+        &.icon-bug {
+          .sprite-icon(6);
         }
       }
       
@@ -467,16 +478,20 @@ html {
     
     .notif,
     .close {
+      display: block;
+      cursor: pointer;
       text-shadow: 0px 1px 0px rgba(0, 0, 0, .4);
       z-index: 2147483641;
       font-weight: bold;
       position: absolute;
       top: -14px;
       font-size: 11px;
-      line-height: 14px;
-      width: 14px;
-      height: 14px;
-      padding: 2px;
+      line-height: 14px !important;
+      width: 14px !important;
+      height: 14px !important;
+      min-width: 14px !important;
+      min-height: 14px !important;
+      padding: 2px !important;
       .border-radius-same-size(15px);
       .gradient-bg(@red, @red);
       text-align: center;
@@ -486,12 +501,10 @@ html {
     }
     
     .notif {
-      cursor: default;
       left: -14px;
     }
     
     .close {
-      cursor: pointer;
       right: -14px;
     }
           

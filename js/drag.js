@@ -1,4 +1,4 @@
-function Drag ( tpl, clsName )
+function TooluxDrag ( tpl, clsName )
 {    
     this._tpl = tpl;
     this._clsName = clsName;
@@ -6,7 +6,7 @@ function Drag ( tpl, clsName )
     this.bindEvent();
 }
 
-Drag.prototype.bindEvent = function (e)
+TooluxDrag.prototype.bindEvent = function (e)
 {
     var _self = this,
         _isClicked = false,
@@ -104,11 +104,11 @@ Drag.prototype.bindEvent = function (e)
             return false;
         }
     });
-}
+};
 
-Drag.prototype.destroy = function (e)
+TooluxDrag.prototype.destroy = function (e)
 {      
     this._tpl.unbind('mousedown');
     $(document).unbind('mousemove');
     $(document).unbind('mouseup');
-}
+};
