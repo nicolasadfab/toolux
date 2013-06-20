@@ -197,46 +197,66 @@ var Toolux = Toolux || (function ($)
                 App.resetCountNote();
             });
             
-            $('body').on('dragend', function (e)
+            function showDropZone ()
             {
-                console.log(e.type);
-                e.stopPropagation();
-                e.preventDefault();
+                $('.tab-2').addClass('open');
+                $('#drop_zone').addClass('over');
+                    
+                $('#adfab-drag-overlay').show();
+            }
             
+            function hideDropZone ()
+            {
                 $('.tab-2').removeClass('open');
                 $('#drop_zone').removeClass('over');
+                    
+                $('#adfab-drag-overlay').hide();
+            }
+            
+            $('body').bind('dragover', function (e)
+            {
+                e.stopPropagation();
+                e.preventDefault();
+                
+                showDropZone();
+                
+                return false;
+            });
+            
+            $('#adfab-drag-overlay').on('drop mousemove mouseleave dragend', function (e)
+            {
+                e.stopPropagation();
+                e.preventDefault();
+                
+                hideDropZone();
+                
+                return false;
             });
             
             $('#drop_zone').on('dragstop', function (e)
             {
-                console.log(e.type);
                 e.stopPropagation();
                 e.preventDefault();
-            
-                $('.tab-2').removeClass('open');
-                $('#drop_zone').removeClass('over');
+                
+                hideDropZone();
             });
             
             $('#drop_zone').on('dragover', function (e)
             {
-                console.log(e.type);
                 e.stopPropagation();
                 e.preventDefault();
                 
-                $('.tab-2').addClass('open');
-                $('#drop_zone').addClass('over');
+                showDropZone();
                 
                 e.originalEvent.dataTransfer.dropEffect = 'copy';
             });
             
             $('#drop_zone').on('drop', function (e)
             {
-                console.log(e.type);
                 e.stopPropagation();
                 e.preventDefault();
-            
-                $('.tab-2').removeClass('open');
-                $('#drop_zone').removeClass('over');
+                
+                hideDropZone();
 
                 var files = e.originalEvent.dataTransfer.files, // FileList object.
                     reader = new FileReader(),
