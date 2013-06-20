@@ -1,5 +1,7 @@
 function TooluxNote ( color, notif )
-{    
+{
+    'use strict';
+    
     this._color = color;
     this._used = false;
     this._dead = false;
@@ -39,21 +41,29 @@ function TooluxNote ( color, notif )
 
 TooluxNote.prototype.setNumb = function (i)
 {
+    'use strict';
+    
     this._notif.html(i);
-}
+};
 
 TooluxNote.prototype.isDead = function ()
 {
+    'use strict';
+    
     return this._dead;
-}
+};
 
 TooluxNote.prototype.isUsed = function ()
 {
+    'use strict';
+    
     return this._used;
-}
+};
 
 TooluxNote.prototype.bindEvent = function (e)
 {
+    'use strict';
+    
     var _self = this,
         _isClicked = false,
         _pos = {
@@ -152,25 +162,29 @@ TooluxNote.prototype.bindEvent = function (e)
     {
         _self.destroy();
     });
-}
+};
 
 TooluxNote.prototype.opacityOverlay = function (i)
 {
+    'use strict';
+    
     if(i <= 10 && i >= 1) {
         this._tpl.css({
             background: 'rgba(255, 255, 255, ' + (i / 10) + ')'
         });
     }
-    console.log('rgba(255, 255, 255, ' + (i / 10) + ')');
+    
     if(this.opacity > 10) {
         this.opacity = 10;
     }else if(this.opacity < 0) {
         this.opacity = 0;
     }
-}
+};
 
 TooluxNote.prototype.destroy = function (e)
 {
+    'use strict';
+    
     if(this.drag != null) {
         this.drag.destroy();
     }
@@ -183,4 +197,4 @@ TooluxNote.prototype.destroy = function (e)
     this._tpl.remove();
     this._dead = true;
     $(document).trigger(RESET_COUNT);
-}
+};

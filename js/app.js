@@ -142,7 +142,7 @@ var Toolux = Toolux || (function ($)
             makeRefresh: function (e)
             {
                 e.preventDefault();
-                App.addRefresh(($(".icon-refresh").attr('data-checked') === '1') ? 0 : 1);
+                App.addRefresh(($(".icon-refresh").attr('data-checked') === '1') ? '0' : '1');
                 return false;
             },
             
@@ -270,9 +270,11 @@ var Toolux = Toolux || (function ($)
                 reader.onloadend = function( )
                 {
                     var d = new TooluxDisplay('<img src="' + this.result + '" />');
+                    /*
                     $('img', '.adfab-display').css({
                         opacity: App.logic.thumbSlider.getPercent() / 100
                     });
+                    */
                 }
             });
         }
@@ -302,7 +304,7 @@ var Toolux = Toolux || (function ($)
                     Events.dragEvents();
                     App.open();
                     
-                    App.logic.thumbSlider = new TooluxSlider($("#slider-1"), Events.endpoints.sliderThumbOpacity, 50);
+                    //App.logic.thumbSlider = new TooluxSlider($("#slider-1"), Events.endpoints.sliderThumbOpacity, 50);
                     App.addRefresh(_cookies.readCookie("css_refresh"));
                 },
                 App.error
@@ -459,9 +461,10 @@ var Toolux = Toolux || (function ($)
             if(checked === null) {
                 checked = ($(".icon-refresh").attr('data-checked') === 'true') ? 1 : 0;
             }
-            if(checked === 1) {
+            if(checked === '1') {
                 IS_ACTIF_CSS_REFRESH = true;
                 $(".icon-refresh").addClass('actif');
+                console.log($(".icon-refresh")[0]); 
                 cssRefresh();
             }else {
                 IS_ACTIF_CSS_REFRESH = false;

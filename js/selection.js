@@ -1,5 +1,7 @@
 function Selection ( callback, inner, color )
-{    
+{
+    'use strict';
+    
     this._inner = (inner != null) ? inner : false;
     this._color = (color != null) ? color : '#000';
     this._callback = callback;
@@ -52,6 +54,8 @@ function Selection ( callback, inner, color )
 // Note here that we are using Object.prototype.newMethod rather than // Object.prototype so as to avoid redefining the prototype object 
 Selection.prototype.bindEvents = function ()
 {
+    'use strict';
+    
     var _self = this,
         _isClicked = false,
         _pos = {
@@ -150,6 +154,8 @@ Selection.prototype.bindEvents = function ()
 
 Selection.prototype.destroy = function ()
 {
+    'use strict';
+    
     this._$sel.remove();
     this._$xLine.remove();
     this._$yLine.remove();

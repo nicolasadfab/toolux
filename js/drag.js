@@ -1,5 +1,7 @@
 function TooluxDrag ( tpl, clsName )
-{    
+{
+    'use strict';
+    
     this._tpl = tpl;
     this._clsName = clsName;
     
@@ -8,6 +10,8 @@ function TooluxDrag ( tpl, clsName )
 
 TooluxDrag.prototype.bindEvent = function (e)
 {
+    'use strict';
+    
     var _self = this,
         _isClicked = false,
         _diff = {
@@ -107,7 +111,9 @@ TooluxDrag.prototype.bindEvent = function (e)
 };
 
 TooluxDrag.prototype.destroy = function (e)
-{      
+{
+    'use strict';
+    
     this._tpl.unbind('mousedown');
     $(document).unbind('mousemove');
     $(document).unbind('mouseup');
