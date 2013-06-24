@@ -5,41 +5,41 @@ html #icon-open {
   top: 0px;
   right: 30px;
 }
-html .slider-wrapper {
+html .sliderAdfab-wrapper {
   position: absolute;
   top: 50%;
   left: 50%;
-  margin: -257px 0px 0px -128px;
-  width: 239px;
-  height: 257px;
+  margin: -300px 0px 0px -150px;
+  width: 300px;
+  height: 300px;
   overflow: hidden;
 }
-html .slider-wrapper ul.slider {
+html .sliderAdfab-wrapper ul.sliderAdfab {
   margin: 0px;
   padding: 0px;
   text-indent: 0px;
   list-style: none;
-  height: 257px;
+  height: 300px;
 }
-html .slider-wrapper ul.slider li {
+html .sliderAdfab-wrapper ul.sliderAdfab li {
   margin: 0px;
   padding: 0px;
   text-indent: 0px;
   float: left;
-  width: 239px;
-  height: 257px;
+  width: 300px;
+  height: 300px;
 }
-html ul.slider-btn {
+html ul.sliderAdfab-btn {
   list-style: none;
   position: absolute;
   top: 50%;
   left: 50%;
-  width: 239px;
-  height: 257px;
+  width: 300px;
+  height: 300px;
   overflow: hidden;
-  margin: 40px 0px 0px -128px;
+  margin: 40px 0px 0px -100px;
 }
-html ul.slider-btn li {
+html ul.sliderAdfab-btn li {
   cursor: pointer;
   width: 10px;
   height: 10px;
@@ -48,7 +48,7 @@ html ul.slider-btn li {
   margin: 5px;
   border-radius: 10px;
 }
-html ul.slider-btn li.actif {
+html ul.sliderAdfab-btn li.actif {
   background: #444444;
 }
 html .credit {
@@ -57,8 +57,8 @@ html .credit {
   position: absolute;
   top: 50%;
   left: 50%;
-  width: 239px;
-  height: 257px;
+  width: 300px;
+  height: 300px;
   overflow: hidden;
   margin: 100px 0px 0px -128px;
   font-family: Arial;

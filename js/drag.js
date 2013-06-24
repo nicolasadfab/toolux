@@ -21,24 +21,24 @@ TooluxDrag.prototype.bindEvent = function (e)
     
     this._tpl.bind('mousedown', function (e)
     {
-        if(!_isClicked && $(e.target).hasClass(_self._clsName)) {
+        if(!_isClicked && jQuery(e.target).hasClass(_self._clsName)) {
                 
-            if($('.adfab-drag').size() > 0) {
-                $('.adfab-drag').removeClass('adfab-drag');
+            if(jQuery('.adfab-drag').size() > 0) {
+                jQuery('.adfab-drag').removeClass('adfab-drag');
             }
-            $(this).addClass('adfab-drag');
+            jQuery(this).addClass('adfab-drag');
             
             e.preventDefault();
             _isClicked = true;
             
             _diff.x = e.clientX - _self._tpl.offset().left;
-            _diff.y = (e.clientY + $(window, document).scrollTop()) - _self._tpl.offset().top;
+            _diff.y = (e.clientY + jQuery(window, document).scrollTop()) - _self._tpl.offset().top;
         
-            $(document).bind('mousemove', function (e)
+            jQuery(document).bind('mousemove', function (e)
             {
                 if(_isClicked) {
                     var newX = e.clientX - _diff.x,
-                        newY = (e.clientY + $(window, document).scrollTop()) - _diff.y;
+                        newY = (e.clientY + jQuery(window, document).scrollTop()) - _diff.y;
                     
                     
                     _self._tpl.css({
@@ -48,17 +48,17 @@ TooluxDrag.prototype.bindEvent = function (e)
                 }
             });
             
-            $(document).bind('mouseup', function (e)
+            jQuery(document).bind('mouseup', function (e)
             {
                 if(_isClicked) {
-                    $(document).unbind('mousemove');
-                    $(document).unbind('mouseup');
+                    jQuery(document).unbind('mousemove');
+                    jQuery(document).unbind('mouseup');
                     
                     e.preventDefault();
                     _isClicked = false;
                     
                     var newX = e.clientX - _diff.x,
-                        newY = (e.clientY + $(window, document).scrollTop()) - _diff.y;
+                        newY = (e.clientY + jQuery(window, document).scrollTop()) - _diff.y;
                     
                     _self._tpl.css({
                         top: newY + 'px',
@@ -72,7 +72,7 @@ TooluxDrag.prototype.bindEvent = function (e)
         }
     });
     
-    $(document).keydown(function (e)
+    jQuery(document).keydown(function (e)
     {
         if(_self._tpl.hasClass('adfab-drag')
             && (e.keyCode == 37 || e.keyCode == 38 || e.keyCode == 39
@@ -80,24 +80,29 @@ TooluxDrag.prototype.bindEvent = function (e)
             e.preventDefault();
             
             var t = parseInt(_self._tpl.css('top').replace('px', '')),
-                l = parseInt(_self._tpl.css('left').replace('px', ''));
+                l = parseInt(_self._tpl.css('left').replace('px', '')),
+            	isShift = false;
+            
+            if (window.event) {
+            	isShift = window.event.shiftKey ? true : false;
+            }
             
             switch(e.keyCode) {
                 // left
                 case 37 :
-                    l -= 1;
+                    l -= (isShift) ? 10 : 1;
                     break;
                 // right
                 case 39 :
-                    l += 1;
+                    l += (isShift) ? 10 : 1;
                     break;
                 // down
                 case 40 :
-                    t += 1;
+                    t += (isShift) ? 10 : 1;
                     break;
                 // up
                 case 38 :
-                    t -= 1;
+                    t -= (isShift) ? 10 : 1;
                     break;
             }
             
@@ -115,6 +120,6 @@ TooluxDrag.prototype.destroy = function (e)
     'use strict';
     
     this._tpl.unbind('mousedown');
-    $(document).unbind('mousemove');
-    $(document).unbind('mouseup');
+    jQuery(document).unbind('mousemove');
+    jQuery(document).unbind('mouseup');
 };

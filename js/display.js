@@ -2,20 +2,20 @@ function TooluxDisplay ( tpl, inner, color )
 {
     'use strict';
     
-    tpl = $(tpl);
+    tpl = jQuery(tpl);
 	tpl.addClass('adfab-display-img');
-    this._tpl = $('<div class="adfab-display"><span class="info">Scroll to change opacity</span></div>');
+    this._tpl = jQuery('<div class="adfab-display"><span class="info">Scroll to change opacity</span></div>');
     this._tpl.append(tpl);
     
     this.opacity = 10;
     
-    this._close = $('<div class="close">x</div>');
+    this._close = jQuery('<div class="close">X</div>');
     this._tpl.append(this._close);
     
     this._tpl.css({
-        top: $(window, document).scrollTop() + 'px'
+        top: jQuery(window, document).scrollTop() + 'px'
     });
-    $('body').append(this._tpl);
+    jQuery('body').append(this._tpl);
     
     this.drag = new TooluxDrag(this._tpl, 'adfab-display-img');
     

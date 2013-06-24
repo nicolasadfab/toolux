@@ -2,17 +2,6 @@
  -----------------------------------------------------------------*/
 html {
   
-  #adfab-drag-overlay {
-    display: none;
-    position: fixed;
-    top: 0px;
-    left: 0px;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, .4);
-    z-index: 2147482000;
-  }
-  
   div#adfab-utils-overlay {
     display: none;
     position: fixed;
@@ -124,42 +113,25 @@ html {
 	    position: absolute;
       height: 100%;
       width: @wtab;
-      //background-color: rgba(255, 255, 255, .4);
       background-color: rgba(255, 255, 255, 1);
-      .box-shadow(0px, 0px, 6px, 1px, rgba(0, 0, 0, .4));
 	  }
         
     #drop_zone {
-      margin: 5px;
+      height: 46px;
+      margin: 2px;
+      width: 115px;
       float: left;
       background-color: rgba(0, 0, 0, .5);
-      width: 100px;
-      height: 36px;
       text-align: center;
       font-weight: bold;
       color: @dark-grey;
-      border: 2px dashed @dark-grey;
+      //border: 2px dashed @dark-grey;
       font-size: 15px;
-      line-height: 35px;
+      line-height: 45px;
       
       &.over {
-        color: @white;
-      }
-    }
-        
-    #drop_info {
-      margin: 5px;
-      float: left;
-      width: 100px;
-      height: 36px;
-      text-align: center;
-      font-weight: bold;
-      color: @dark-grey;
-      font-size: 12px;
-      line-height: 35px;
-      
-      &.over {
-        color: @white;
+        color: @dark-grey;
+        background: @white;
       }
     }
 	  
@@ -173,8 +145,11 @@ html {
 	    overflow: hidden;
 	    cursor: pointer;
       .transition(width, .5s, ease-out);
-      border-bottom: 1px solid #ccc;
-      //.box-shadow(1px, 1px, 1px, 0px, rgba(0, 0, 0, 0.4));
+      border-bottom: 1px solid #333;
+      
+      .wrapper {
+        background-color: #fff;
+      }
       
       &.tab-1 {
         top: 0px;
@@ -188,33 +163,14 @@ html {
       &.tab-2 {
         top: @htab;
         
-        .slider,
-        #drop_zone {
-          display: none;
-        }
-        
         &.open {
           width: 170px;
           background-color: rgba(255, 255, 255, .8);
-          
-          #drop_zone {
-            display: block;
-          }
-          .slider {
-            display: none;
-          }
         }
         
         &:hover {
           width: 170px;
           background-color: rgba(255, 255, 255, .8);
-            
-          .slider {
-            display: block;
-          }
-          #drop_zone {
-            display: none;
-          }
         }
         
         .wrapper {
@@ -222,17 +178,6 @@ html {
           top: 0px;
           left: 0px;
           width: 170px;
-        }
-    
-        .slider {
-          font-style: normal;
-          color: @dark-grey;
-          clear: both;
-          display: block;
-          position: absolute;
-          top: 25px;
-          left: 50px;
-          width: 100px;
         }
   
         .slide-container {
@@ -353,14 +298,13 @@ html {
 	  width: 0px;
 	  height: 0px;
 	  display: none;
-	  .border-radius-same-size(5px);
+	  .border-radius-same-size(10px);
 	  position: absolute;
     z-index: 2147482000;
 	  border: 5px solid red;
 	  background: rgba(255, 255, 255, .5);
 	  cursor: move;
 	  font-family: @ff;
-    .box-shadow(0px, 2px, 5px, 0px, rgba(0, 0, 0, 0.5));
 	  
     * {
       opacity: 1;
@@ -383,14 +327,11 @@ html {
 	  .textarea-wrapper {
 	    position: absolute;
 	    top: 100%;
-	    margin: 15px 0px 0px 0px;
+	    margin: 20px 0px 0px 0px;
 	    left: 0px;
       background-color: @white;
 	    width: 100%;
-      .box-shadow(0px, 4px, 3px, 0px, rgba(0, 0, 0, 0.4));
-      .border-radius-same-size(5px);
-      //height: 0px;
-      //overflow: hidden;
+      .border-radius-same-size(7px);
       
       &.open {
         .transition(height, 1s, ease-out);
@@ -467,7 +408,6 @@ html {
       .not-selectable();
       cursor: pointer;
       display: none;
-      text-shadow: 0px 1px 0px rgba(0, 0, 0, .4);
       z-index: 2147483641;
       font-weight: bold;
       position: absolute;
@@ -482,7 +422,7 @@ html {
       font-size: 30px;
       border: 0px solid #fff;
       box-shadow: none;
-      .gradient-bg(@red, @red);
+      background-color: #fff;
       text-align: center;
       color: @white;
       line-height: 11px;
@@ -507,11 +447,10 @@ html {
     .close {
       display: block;
       cursor: pointer;
-      text-shadow: 0px 1px 0px rgba(0, 0, 0, .4);
       z-index: 2147483641;
       font-weight: bold;
       position: absolute;
-      top: -14px;
+      top: -16px;
       font-size: 11px;
       line-height: 14px !important;
       width: 14px !important;
@@ -520,19 +459,18 @@ html {
       min-height: 14px !important;
       padding: 2px !important;
       .border-radius-same-size(15px);
-      .gradient-bg(@red, @red);
+      background: #FFF;
       text-align: center;
       color: @white;
-      border: 3px solid @white;
-      .box-shadow(0px, 2px, 2px, 1px, rgba(0, 0, 0, 0.4));
+      border: 5px solid @white;
     }
     
     .notif {
-      left: -14px;
+      left: -16px;
     }
     
     .close {
-      right: -14px;
+      right: -16px;
     }
           
     &.red {
@@ -541,7 +479,12 @@ html {
       .notif,
       .close,
       .textarea-show {
-        .gradient-bg(@red-light, @red);
+        border-color: @red;
+        color: @red;
+      }
+      
+      .info {
+        color: @red;
       }
       
       textarea {
@@ -556,7 +499,12 @@ html {
       .notif,
       .close,
       .textarea-show {
-        .gradient-bg(@yellow-light, @yellow);
+        border-color: @yellow;
+        color: @yellow;
+      }
+      
+      .info {
+        color: @yellow;
       }
       
       textarea {
@@ -571,7 +519,12 @@ html {
       .notif,
       .close,
       .textarea-show {
-        .gradient-bg(@green-light, @green);
+        border-color: @green;
+        color: @green;
+      }
+      
+      .info {
+        color: @green;
       }
       
       textarea {
@@ -586,7 +539,12 @@ html {
       .notif,
       .close,
       .textarea-show {
-        .gradient-bg(@blue-light, @blue);
+        border-color: @blue;
+        color: @blue;
+      }
+      
+      .info {
+        color: @blue;
       }
       
       textarea {
@@ -612,7 +570,14 @@ html {
       font-size: 15px;
       pointer-events: none;
       opacity: 0.7;
-      text-shadow: -1px 0px rgba(0, 0, 0, .8);
+      color: @red;
+      display: none;
+    }
+      
+    &:hover {
+      .info {
+        display: block;
+      }
     }
     
     * {
@@ -635,23 +600,21 @@ html {
 	  
     .close {
       line-height: 14px;
-      text-shadow: 0px 1px 0px rgba(0, 0, 0, .4);
       z-index: 2147483641;
       font-weight: bold;
       position: absolute;
-      top: -14px;
+      top: -16px;
       font-size: 11px;
       width: 14px;
       height: 14px;
       padding: 2px;
       .border-radius-same-size(15px);
-      .gradient-bg(@red, @red);
+      background-color: #fff;
       text-align: center;
-      color: @white;
-      border: 3px solid @white;
-      .box-shadow(0px, 2px, 2px, 1px, rgba(0, 0, 0, 0.4));
+      color: @red;
+      border: 5px solid @red;
       cursor: pointer;
-      right: -9px;
+      right: -16px;
     }
 	}
 }

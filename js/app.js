@@ -1,3 +1,5 @@
+jQuery.noConflict();
+
 var Toolux = Toolux || (function ($)
 {
     'use strict';
@@ -7,7 +9,7 @@ var Toolux = Toolux || (function ($)
         App     = {}, // Your Global Logic and Initializer
         Public  = {}, // Your Public Functions
         Promise = null; // for promise pattern
-        
+       
     /**
      ************************************************************
      * Implémentation du pattern promise
@@ -146,13 +148,6 @@ var Toolux = Toolux || (function ($)
                 return false;
             },
             
-            sliderThumbOpacity: function (percent)
-            {
-                $('img', '.adfab-display').css({
-                    opacity: percent / 100
-                });
-            },
-            
             makeHelp: function (e)
             {
                 e.preventDefault();
@@ -197,86 +192,56 @@ var Toolux = Toolux || (function ($)
                 App.resetCountNote();
             });
             
-            function showDropZone ()
-            {
-                $('.tab-2').addClass('open');
-                $('#drop_zone').addClass('over');
-                    
-                $('#adfab-drag-overlay').show();
-            }
+			$(document).bind('dragout dragend dragleave', function (e)
+			{
+				if(App.logic.open) {
+	                $('.tab-2').removeClass('open');
+	                $('#drop_zone').removeClass('open');
+				}
+			});
             
-            function hideDropZone ()
-            {
-                $('.tab-2').removeClass('open');
-                $('#drop_zone').removeClass('over');
-                    
-                $('#adfab-drag-overlay').hide();
-            }
+			$(document).bind('drop', function (e)
+			{
+				if(App.logic.open) {
+					e.preventDefault();
+					if($(e.target).attr('id') === 'drop_zone') {
+		                var files = e.originalEvent.dataTransfer.files, // FileList object.
+		                    reader = new FileReader(),
+		                    output = [],
+		                    i, f;
+		                
+		                for (i = 0, f; f = files[i]; i++) {
+		                    reader.readAsDataURL( files[i] );
+		                }
+		                
+		                reader.onloadend = function( )
+		                {
+		                    var d = new TooluxDisplay('<img src="' + this.result + '" />');
+		                }
+					}
+	                
+	                $('.tab-2').removeClass('open');
+	                $('#drop_zone').removeClass('open');
+	                
+	                return false;
+				}
+			});
             
-            $('body').bind('dragover', function (e)
-            {
-                e.stopPropagation();
-                e.preventDefault();
-                
-                showDropZone();
-                
-                return false;
-            });
-            
-            $('#adfab-drag-overlay').on('drop mousemove mouseleave dragend', function (e)
-            {
-                e.stopPropagation();
-                e.preventDefault();
-                
-                hideDropZone();
-                
-                return false;
-            });
-            
-            $('#drop_zone').on('dragstop', function (e)
-            {
-                e.stopPropagation();
-                e.preventDefault();
-                
-                hideDropZone();
-            });
-            
-            $('#drop_zone').on('dragover', function (e)
-            {
-                e.stopPropagation();
-                e.preventDefault();
-                
-                showDropZone();
-                
-                e.originalEvent.dataTransfer.dropEffect = 'copy';
-            });
-            
-            $('#drop_zone').on('drop', function (e)
-            {
-                e.stopPropagation();
-                e.preventDefault();
-                
-                hideDropZone();
-
-                var files = e.originalEvent.dataTransfer.files, // FileList object.
-                    reader = new FileReader(),
-                    output = [],
-                    i, f;
-                
-                for (i = 0, f; f = files[i]; i++) {
-                    reader.readAsDataURL( files[i] );
-                }
-                
-                reader.onloadend = function( )
-                {
-                    var d = new TooluxDisplay('<img src="' + this.result + '" />');
-                    /*
-                    $('img', '.adfab-display').css({
-                        opacity: App.logic.thumbSlider.getPercent() / 100
-                    });
-                    */
-                }
-            });
+			$(document).bind('dragover', function (e)
+			{
+				if(App.logic.open) {
+					e.preventDefault();
+	                $('.tab-2').addClass('open');
+	                
+					if($(e.target).attr('id') === 'drop_zone') {
+						$('#drop_zone').addClass('over');
+	                	e.originalEvent.dataTransfer.dropEffect = 'copy';
+					}else {
+						$('#drop_zone').removeClass('over');
+					}
+	                return false;
+				}
+			});
         }
     };
     
@@ -289,8 +254,7 @@ var Toolux = Toolux || (function ($)
                 yellow: [],
                 green: [],
                 blue: []
-            },
-            thumbSlider: null
+            }
         },
         
         init: function ()
@@ -304,7 +268,6 @@ var Toolux = Toolux || (function ($)
                     Events.dragEvents();
                     App.open();
                     
-                    //App.logic.thumbSlider = new TooluxSlider($("#slider-1"), Events.endpoints.sliderThumbOpacity, 50);
                     App.addRefresh(_cookies.readCookie("css_refresh"));
                 },
                 App.error
@@ -399,7 +362,6 @@ var Toolux = Toolux || (function ($)
             var c, n;
             for(c in App.logic.note) {
                 for(n in App.logic.note[c]) {
-                    _log(App.logic.note[c][n].isUsed());
                     if(!App.logic.note[c][n].isUsed()) {
                         App.logic.note[c][n].destroy();
                     }

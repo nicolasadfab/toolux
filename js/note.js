@@ -14,27 +14,27 @@ function TooluxNote ( color, notif )
             endY: 0
         };
     
-    this._tpl = $('<div />');
+    this._tpl = jQuery('<div />');
     this._tpl.attr('class', 'adfab-note ' + color);
     
-    this._info = $('<div class="info">Scroll to change opacity</div>');
+    this._info = jQuery('<div class="info">Scroll to change opacity</div>');
     this._tpl.append(this._info);
     
-    this._notif = $('<div class="notif">' + notif + '</div>');
+    this._notif = jQuery('<div class="notif">' + notif + '</div>');
     this._tpl.append(this._notif);
     
-    this._close = $('<div class="close">x</div>');
+    this._close = jQuery('<div class="close">X</div>');
     this._tpl.append(this._close);
     
-    this._textarea = $('<div class="textarea-wrapper"><div class="textarea-inner"><textarea></textarea></div></div>');
+    this._textarea = jQuery('<div class="textarea-wrapper"><div class="textarea-inner"><textarea></textarea></div></div>');
     this._tpl.append(this._textarea);
     
-    this._textarea_show = $('<div class="textarea-show">+</div>');
+    this._textarea_show = jQuery('<div class="textarea-show">+</div>');
     this._tpl.append(this._textarea_show);
     
-    $('html').append(this._tpl);
+    jQuery('html').append(this._tpl);
     
-    $('#adfab-utils-overlay').show();
+    jQuery('#adfab-utils-overlay').show();
     
     this.bindEvent();
 }
@@ -73,7 +73,7 @@ TooluxNote.prototype.bindEvent = function (e)
             endY: 0
         };
     
-    $('#adfab-utils-overlay').bind('mousedown', function (e)
+    jQuery('#adfab-utils-overlay').bind('mousedown', function (e)
     {
         if(!_isClicked) {
             _self._tpl.show();
@@ -82,7 +82,7 @@ TooluxNote.prototype.bindEvent = function (e)
             _isClicked = true;
             
             _pos.startX = e.clientX;
-            _pos.startY = e.clientY + $(window, document).scrollTop();
+            _pos.startY = e.clientY + jQuery(window, document).scrollTop();
             
             _self._tpl.css({
                 top: _pos.startY + 'px',
@@ -90,10 +90,10 @@ TooluxNote.prototype.bindEvent = function (e)
                 display: 'block'
             });
     
-            $(document).bind('mousemove', function (e)
+            jQuery(document).bind('mousemove', function (e)
             {
                 _pos.width = e.clientX - _pos.startX;
-                _pos.height = (e.clientY + $(window, document).scrollTop()) - _pos.startY;
+                _pos.height = (e.clientY + jQuery(window, document).scrollTop()) - _pos.startY;
                 
                 _self._tpl.css({
                     width: _pos.width + 'px',
@@ -101,23 +101,23 @@ TooluxNote.prototype.bindEvent = function (e)
                 });
             });
             
-            $(document).bind('mouseup', function (e)
+            jQuery(document).bind('mouseup', function (e)
             {
                 e.preventDefault();
                 
-                $('#adfab-utils-overlay').unbind('mousedown');
-                $(document).unbind('mousemove');
-                $(document).unbind('mouseup');
+                jQuery('#adfab-utils-overlay').unbind('mousedown');
+                jQuery(document).unbind('mousemove');
+                jQuery(document).unbind('mouseup');
                 
-                $('#adfab-utils-overlay').hide();
+                jQuery('#adfab-utils-overlay').hide();
                 
                 _isClicked = false;
                 
                 _pos.endX = e.clientX;
-                _pos.endY = e.clientY + $(window, document).scrollTop();
+                _pos.endY = e.clientY + jQuery(window, document).scrollTop();
                     
                 _pos.width = e.clientX - _pos.startX;
-                _pos.height = (e.clientY + $(window, document).scrollTop()) - _pos.startY;
+                _pos.height = (e.clientY + jQuery(window, document).scrollTop()) - _pos.startY;
                 
                 _self._tpl.css({
                     width: _pos.width + 'px',
@@ -147,7 +147,7 @@ TooluxNote.prototype.bindEvent = function (e)
     
     this._textarea_show.bind('click', function ()
     {
-        if(!$(this).hasClass('open')) {
+        if(!jQuery(this).hasClass('open')) {
             _self._textarea.addClass('open');
             _self._textarea_show.addClass('open');
             _self._textarea_show.html('-');
@@ -188,13 +188,13 @@ TooluxNote.prototype.destroy = function (e)
     if(this.drag != null) {
         this.drag.destroy();
     }
-    $('#adfab-utils-overlay').unbind('mousedown');
+    jQuery('#adfab-utils-overlay').unbind('mousedown');
     this._tpl.unbind('scroll');
-    $(document).unbind('mousemove');
-    $(document).unbind('mouseup');
+    jQuery(document).unbind('mousemove');
+    jQuery(document).unbind('mouseup');
     this._close.unbind('click');
     
     this._tpl.remove();
     this._dead = true;
-    $(document).trigger(RESET_COUNT);
+    jQuery(document).trigger(RESET_COUNT);
 };
