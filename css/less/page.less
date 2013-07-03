@@ -2,6 +2,94 @@
  -----------------------------------------------------------------*/
 html {
   
+  .adfab-arrow {
+    z-index: 2147482000;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    cursor: move;
+    font-size: 100px;
+    height: 50px;
+    line-height: 50px;
+
+    &.red {
+      color: @red-light;
+    }
+    
+    &.yellow {
+      color: @yellow-light;
+    }
+    
+    &.green {
+      color: @green-light;
+    }
+    
+    &.blue {
+      color: @blue-light;
+    }
+    
+    .info {
+      width: 100%;
+      bottom: 0px;
+      position: absolute;
+      text-align: center;
+      line-height: 14px;
+      font-size: 12px;
+      pointer-events: none;
+      opacity: 0.7;
+      margin-bottom: -22px;
+      color: @dark-grey;
+      display: none;
+    }
+    
+    &:hover {
+      
+      .info,
+      .close {
+        display: block;
+      }
+    }
+    
+    * {
+      opacity: 1;
+      line-height: inherit;
+      padding: 0px;
+      margin: 0px;
+      font-size: @fz;
+      font-family: @ff;
+      
+      &:hover {
+        opacity: 1;
+        line-height: inherit;
+        padding: 0px;
+        margin: 0px;
+        font-size: @fz;
+        font-family: @ff;
+      }
+    }
+    
+    .close {
+      line-height: 14px;
+      z-index: 2147483641;
+      font-weight: bold;
+      position: absolute;
+      top: -14px;
+      font-size: 11px;
+      width: 14px;
+      height: 14px;
+      padding: 2px;
+      .border-radius-same-size(15px);
+      .gradient-bg(@red, @red);
+      text-align: center;
+      color: @white;
+      border: 3px solid @white;
+      .box-shadow(0px, 2px, 2px, 1px, rgba(0, 0, 0, 0.4));
+      cursor: pointer;
+      right: -9px;
+      display: none;
+    }
+  }
+  
   div#adfab-utils-overlay {
     display: none;
     position: fixed;
@@ -224,6 +312,17 @@ html {
       
       &.tab-4 {
         top: @htab * 3;
+        
+        .wrapper {
+          position: absolute;
+          top: 0px;
+          left: 0px;
+          width: @wtab * 8;
+        }
+        
+        &:hover {
+          width: @wtab * 8;
+        }
       }
       
       &.tab-5 {
@@ -232,6 +331,10 @@ html {
       
       &.tab-6 {
         top: @htab * 5;
+      }
+      
+      &.tab-7 {
+        top: @htab * 6;
       }
       
       .icon {
@@ -262,12 +365,21 @@ html {
         &.icon-bug {
           .sprite-icon(6);
         }
+        
+        &.icon-arrow {
+          color: #444444;
+          background: none;
+          font-size: 45px;
+          line-height: 52px;
+          text-align: center;
+        }
       }
       
       &:hover {
         background-color: rgba(255, 255, 255, .8);
         
-        .icon-note {
+        .icon-note,
+        .icon-arrow {
           opacity: .4;
           
           &:hover {

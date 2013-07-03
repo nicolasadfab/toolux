@@ -9,6 +9,7 @@
      
             <sources dir="js">
                 <file name="jquery-1-9-1.min.js"/>
+                <file name="arrow.js"/>
                 <file name="display.js"/>
                 <file name="drag.js"/>
                 <file name="note.js"/>

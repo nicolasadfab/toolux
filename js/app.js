@@ -134,6 +134,13 @@ var Toolux = Toolux || (function ($)
                 return false;
             },
             
+            makeArrow: function (e)
+            {
+                e.preventDefault();
+                App.addArrow($(this).attr('data-color'), $(this).attr('data-arrow'));
+                return false;
+            },
+            
             makeScreenshot: function (e)
             {
                 e.preventDefault();
@@ -235,7 +242,7 @@ var Toolux = Toolux || (function ($)
 	                
 					if($(e.target).attr('id') === 'drop_zone') {
 						$('#drop_zone').addClass('over');
-	                	e.originalEvent.dataTransfer.dropEffect = 'copy';
+                        e.originalEvent.dataTransfer.dropEffect = 'copy';
 					}else {
 						$('#drop_zone').removeClass('over');
 					}
@@ -355,6 +362,11 @@ var Toolux = Toolux || (function ($)
         error: function (e)
         {
             _log(e);
+        },
+        
+        addArrow: function (color, chara)
+        {
+            new TooluxArrow(color, chara);
         },
         
         addNote: function (color)

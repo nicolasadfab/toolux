@@ -138,6 +138,88 @@ div#adfab-utils table {
 }
 /* =page
  -----------------------------------------------------------------*/
+html .adfab-arrow {
+  z-index: 2147482000;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  cursor: move;
+  font-size: 100px;
+  height: 50px;
+  line-height: 50px;
+}
+html .adfab-arrow.red {
+  color: #ff3758;
+}
+html .adfab-arrow.yellow {
+  color: #fff337;
+}
+html .adfab-arrow.green {
+  color: #9bff3a;
+}
+html .adfab-arrow.blue {
+  color: #3af3ff;
+}
+html .adfab-arrow .info {
+  width: 100%;
+  bottom: 0px;
+  position: absolute;
+  text-align: center;
+  line-height: 14px;
+  font-size: 12px;
+  pointer-events: none;
+  opacity: 0.7;
+  margin-bottom: -22px;
+  color: #444444;
+  display: none;
+}
+html .adfab-arrow:hover .info,
+html .adfab-arrow:hover .close {
+  display: block;
+}
+html .adfab-arrow * {
+  opacity: 1;
+  line-height: inherit;
+  padding: 0px;
+  margin: 0px;
+  font-size: 12px;
+  font-family: Arial;
+}
+html .adfab-arrow *:hover {
+  opacity: 1;
+  line-height: inherit;
+  padding: 0px;
+  margin: 0px;
+  font-size: 12px;
+  font-family: Arial;
+}
+html .adfab-arrow .close {
+  line-height: 14px;
+  z-index: 2147483641;
+  font-weight: bold;
+  position: absolute;
+  top: -14px;
+  font-size: 11px;
+  width: 14px;
+  height: 14px;
+  padding: 2px;
+  -webkit-border-radius: 15px 15px 15px 15px;
+  border-radius: 15px 15px 15px 15px;
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #da0024), color-stop(100%, #da0024));
+  /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top, #da0024 0%, #da0024 100%);
+  /* Chrome10+,Safari5.1+ */
+  background: linear-gradient(to bottom, #da0024 0%, #da0024 100%);
+  /* W3C */
+  text-align: center;
+  color: #ffffff;
+  border: 3px solid #ffffff;
+  -webkit-box-shadow: 0px 2px 2px 1px rgba(0, 0, 0, 0.4);
+  box-shadow: 0px 2px 2px 1px rgba(0, 0, 0, 0.4);
+  cursor: pointer;
+  right: -9px;
+  display: none;
+}
 html div#adfab-utils-overlay {
   display: none;
   position: fixed;
@@ -339,11 +421,23 @@ html div#adfab-utils section.tab.tab-3:hover {
 html div#adfab-utils section.tab.tab-4 {
   top: 150px;
 }
+html div#adfab-utils section.tab.tab-4 .wrapper {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 400px;
+}
+html div#adfab-utils section.tab.tab-4:hover {
+  width: 400px;
+}
 html div#adfab-utils section.tab.tab-5 {
   top: 200px;
 }
 html div#adfab-utils section.tab.tab-6 {
   top: 250px;
+}
+html div#adfab-utils section.tab.tab-7 {
+  top: 300px;
 }
 html div#adfab-utils section.tab .icon {
   float: left;
@@ -380,25 +474,38 @@ html div#adfab-utils section.tab .icon.icon-bug {
   background-repeat: no-repeat;
   background-position: 0px -300px;
 }
+html div#adfab-utils section.tab .icon.icon-arrow {
+  color: #444444;
+  background: none;
+  font-size: 45px;
+  line-height: 52px;
+  text-align: center;
+}
 html div#adfab-utils section.tab:hover {
   background-color: rgba(255, 255, 255, 0.8);
 }
-html div#adfab-utils section.tab:hover .icon-note {
+html div#adfab-utils section.tab:hover .icon-note,
+html div#adfab-utils section.tab:hover .icon-arrow {
   opacity: .4;
 }
-html div#adfab-utils section.tab:hover .icon-note:hover {
+html div#adfab-utils section.tab:hover .icon-note:hover,
+html div#adfab-utils section.tab:hover .icon-arrow:hover {
   opacity: 1;
 }
-html div#adfab-utils section.tab:hover .icon-note.red {
+html div#adfab-utils section.tab:hover .icon-note.red,
+html div#adfab-utils section.tab:hover .icon-arrow.red {
   background-color: #ff3758;
 }
-html div#adfab-utils section.tab:hover .icon-note.yellow {
+html div#adfab-utils section.tab:hover .icon-note.yellow,
+html div#adfab-utils section.tab:hover .icon-arrow.yellow {
   background-color: #fff337;
 }
-html div#adfab-utils section.tab:hover .icon-note.green {
+html div#adfab-utils section.tab:hover .icon-note.green,
+html div#adfab-utils section.tab:hover .icon-arrow.green {
   background-color: #9bff3a;
 }
-html div#adfab-utils section.tab:hover .icon-note.blue {
+html div#adfab-utils section.tab:hover .icon-note.blue,
+html div#adfab-utils section.tab:hover .icon-arrow.blue {
   background-color: #3af3ff;
 }
 html .adfab-note {
