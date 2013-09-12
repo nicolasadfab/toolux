@@ -1,6 +1,6 @@
 {
     "name": "ToolUx",
-    "version": "3.1",
+    "version": "3.2",
     "permissions": [
         "tabs",
         "clipboardRead",

@@ -249,7 +249,8 @@ html {
       }
       
       &.tab-2 {
-        top: @htab;
+        top: @htab + 1px;
+        top: 60px;
         
         &.open {
           width: 170px;
@@ -296,7 +297,7 @@ html {
       }
       
       &.tab-3 {
-        top: @htab * 2;
+        top: (@htab + 1px) * 2;
         
         .wrapper {
           position: absolute;
